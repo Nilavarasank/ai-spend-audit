@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { tools } from "../data/tools"
+import { generateAudit } from "../utils/auditEngine"
 
 function AuditForm() {
 
@@ -11,6 +12,8 @@ function AuditForm() {
     teamSize: "",
     useCase: ""
   })
+
+  const [result, setResult] = useState(null)
 
   const selectedTool = tools.find(
     (tool) => tool.name === formData.tool
@@ -26,7 +29,9 @@ function AuditForm() {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    console.log(formData)
+    const auditResult = generateAudit(formData)
+
+    setResult(auditResult)
   }
 
   return (
@@ -115,6 +120,39 @@ function AuditForm() {
       >
         Generate Audit
       </button>
+
+      {
+        result && (
+          <div className="bg-black border border-zinc-700 p-5 rounded-lg space-y-3">
+
+            <h3 className="text-2xl font-bold">
+              Audit Result
+            </h3>
+
+            <p>
+              <span className="font-bold">
+                Recommendation:
+              </span>{" "}
+              {result.recommendation}
+            </p>
+
+            <p>
+              <span className="font-bold">
+                Monthly Savings:
+              </span>{" "}
+              ${result.savings}
+            </p>
+
+            <p>
+              <span className="font-bold">
+                Reason:
+              </span>{" "}
+              {result.reason}
+            </p>
+
+          </div>
+        )
+      }
 
     </form>
   )
