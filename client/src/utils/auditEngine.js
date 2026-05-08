@@ -1,43 +1,68 @@
-export function generateAudit(data) {
+export function generateAudit(toolsData) {
 
-  let recommendation = ""
-  let savings = 0
-  let reason = ""
+  const audits = []
 
-  // ChatGPT Logic
-  if (
-    data.tool === "ChatGPT" &&
-    data.plan === "Team" &&
-    Number(data.seats) <= 2
-  ) {
-    recommendation = "Switch to ChatGPT Plus"
-    savings = Number(data.monthlySpend) - 40
-    reason =
-      "Small teams usually do not require the Team plan."
-  }
+  let totalSavings = 0
 
-  
-  else if (
-    data.tool === "Claude" &&
-    data.plan === "Team" &&
-    Number(data.seats) <= 2
-  ) {
-    recommendation = "Switch to Claude Pro"
-    savings = Number(data.monthlySpend) - 40
-    reason =
-      "Claude Team is expensive for very small teams."
-  }
+  toolsData.forEach((tool) => {
 
-  else {
-    recommendation = "Current plan looks optimized"
-    savings = 0
-    reason =
-      "No major savings opportunity detected."
-  }
+    let recommendation = ""
+    let savings = 0
+    let reason = ""
+
+    // ChatGPT Logic
+    if (
+      tool.tool === "ChatGPT" &&
+      tool.plan === "Team" &&
+      Number(tool.seats) <= 2
+    ) {
+
+      recommendation = "Switch to ChatGPT Plus"
+
+      savings = Number(tool.monthlySpend) - 40
+
+      reason =
+        "Small teams usually do not require Team plan."
+    }
+
+    // Claude Logic
+    else if (
+      tool.tool === "Claude" &&
+      tool.plan === "Team" &&
+      Number(tool.seats) <= 2
+    ) {
+
+      recommendation = "Switch to Claude Pro"
+
+      savings = Number(tool.monthlySpend) - 40
+
+      reason =
+        "Claude Team is expensive for very small teams."
+    }
+
+    else {
+
+      recommendation = "Current plan looks optimized"
+
+      savings = 0
+
+      reason =
+        "No major savings opportunity detected."
+    }
+
+    totalSavings += savings
+
+    audits.push({
+      tool: tool.tool,
+      recommendation,
+      savings,
+      reason
+    })
+
+  })
 
   return {
-    recommendation,
-    savings,
-    reason
+    audits,
+    totalSavings
   }
 }

@@ -1,11 +1,9 @@
-import AuditForm from "./components/AuditForm"
+import Dashboard from "./pages/Dashboard"
 
 function App() {
-  return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center p-5">
-      <AuditForm />
-    </div>
-  )
+
+  return <Dashboard />
+
 }
 
 export default App
