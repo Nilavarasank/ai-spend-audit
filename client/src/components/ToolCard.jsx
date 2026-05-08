@@ -20,7 +20,7 @@ function ToolCard({
           onChange={(e) =>
             handleChange(index, "tool", e.target.value)
           }
-          className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black focus:outline-none focus:ring-2 focus:ring-green-400"
+          className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-zinc-800 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-green-400"
         >
 
           <option value="">
@@ -55,7 +55,7 @@ function ToolCard({
           onChange={(e) =>
             handleChange(index, "plan", e.target.value)
           }
-          className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black focus:outline-none focus:ring-2 focus:ring-green-400"
+          className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-zinc-800 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-green-400"
         >
 
           <option value="">
@@ -99,7 +99,7 @@ function ToolCard({
           onChange={(e) =>
             handleChange(index, "monthlySpend", e.target.value)
           }
-          className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-green-400"
+          className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-zinc-800 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-green-400"
         />
 
       </div>
@@ -117,7 +117,7 @@ function ToolCard({
           onChange={(e) =>
             handleChange(index, "seats", e.target.value)
           }
-          className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-green-400"
+          className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-zinc-800 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-green-400"
         />
 
       </div>
