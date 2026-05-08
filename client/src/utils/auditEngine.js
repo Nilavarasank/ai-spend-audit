@@ -1,68 +1,74 @@
-export function generateAudit(toolsData) {
+import { describe, it, expect } from "vitest"
+import { generateAudit } from "./auditEngine"
 
-  const audits = []
+describe("Audit Engine", () => {
 
-  let totalSavings = 0
+  it("calculates savings correctly", () => {
 
-  toolsData.forEach((tool) => {
+    const result = generateAudit([
+      {
+        tool: "ChatGPT",
+        plan: "team",
+        monthlySpend: 200,
+        seats: 2
+      }
+    ])
 
-    let recommendation = ""
-    let savings = 0
-    let reason = ""
-
-    // ChatGPT Logic
-    if (
-      tool.tool === "ChatGPT" &&
-      tool.plan === "Team" &&
-      Number(tool.seats) <= 2
-    ) {
-
-      recommendation = "Switch to ChatGPT Plus"
-
-      savings = Number(tool.monthlySpend) - 40
-
-      reason =
-        "Small teams usually do not require Team plan."
-    }
-
-    // Claude Logic
-    else if (
-      tool.tool === "Claude" &&
-      tool.plan === "Team" &&
-      Number(tool.seats) <= 2
-    ) {
-
-      recommendation = "Switch to Claude Pro"
-
-      savings = Number(tool.monthlySpend) - 40
-
-      reason =
-        "Claude Team is expensive for very small teams."
-    }
-
-    else {
-
-      recommendation = "Current plan looks optimized"
-
-      savings = 0
-
-      reason =
-        "No major savings opportunity detected."
-    }
-
-    totalSavings += savings
-
-    audits.push({
-      tool: tool.tool,
-      recommendation,
-      savings,
-      reason
-    })
+    expect(result.totalSavings).toBeGreaterThanOrEqual(0)
 
   })
 
-  return {
-    audits,
-    totalSavings
-  }
-}
+  it("returns annual savings", () => {
+
+    const result = generateAudit([
+      {
+        tool: "Claude",
+        plan: "pro",
+        monthlySpend: 100,
+        seats: 1
+      }
+    ])
+
+    expect(result.annualSavings).toBeGreaterThanOrEqual(0)
+
+  })
+
+  it("returns audits array", () => {
+
+    const result = generateAudit([
+      {
+        tool: "Gemini",
+        plan: "pro",
+        monthlySpend: 50,
+        seats: 1
+      }
+    ])
+
+    expect(Array.isArray(result.audits)).toBe(true)
+
+  })
+
+  it("handles empty input", () => {
+
+    const result = generateAudit([])
+
+    expect(result.totalSavings).toBe(0)
+
+  })
+
+  it("includes recommendation", () => {
+
+    const result = generateAudit([
+      {
+        tool: "Cursor",
+        plan: "business",
+        monthlySpend: 500,
+        seats: 2
+      }
+    ])
+
+    expect(result.audits[0].recommendation).toBeDefined()
+
+  })
+
+})

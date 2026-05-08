@@ -81,7 +81,6 @@ function AuditForm({ goToDashboard }) {
     ) {
 
       alert("Please fill all fields")
-
       return
     }
 
@@ -100,15 +99,15 @@ function AuditForm({ goToDashboard }) {
     if (error) {
 
       console.log(error)
-
       alert("Failed to save report")
-
       return
     }
 
     alert("Audit report saved successfully")
 
-    goToDashboard()
+    if (goToDashboard) {
+      goToDashboard()
+    }
   }
 
   const addTool = () => {
@@ -139,7 +138,7 @@ function AuditForm({ goToDashboard }) {
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-2xl w-full max-w-4xl mx-auto space-y-6 shadow-2xl text-black"
+        className="bg-white p-8 rounded-3xl w-full max-w-4xl mx-auto space-y-6 shadow-2xl"
       >
 
         <div className="space-y-2">
@@ -159,7 +158,7 @@ function AuditForm({ goToDashboard }) {
 
             <div
               key={index}
-              className="bg-zinc-100 border border-zinc-300 rounded-xl p-5"
+              className="bg-zinc-100 border border-zinc-300 rounded-2xl p-5"
             >
 
               <ToolCard
@@ -177,7 +176,7 @@ function AuditForm({ goToDashboard }) {
         <button
           type="button"
           onClick={addTool}
-          className="w-full bg-zinc-900 hover:bg-black transition py-3 rounded-xl font-bold text-white"
+          className="w-full bg-black hover:bg-zinc-800 transition py-4 rounded-xl font-bold text-white"
         >
           + Add Another Tool
         </button>
@@ -189,19 +188,35 @@ function AuditForm({ goToDashboard }) {
             placeholder="Team Size"
             value={teamSize}
             onChange={(e) => setTeamSize(e.target.value)}
-            className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black caret-black placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-green-400"
           />
 
           <select
             value={useCase}
             onChange={(e) => setUseCase(e.target.value)}
-            className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black caret-black focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black focus:outline-none focus:ring-2 focus:ring-green-400"
           >
-            <option value="">Primary Use Case</option>
-            <option value="coding">Coding</option>
-            <option value="writing">Writing</option>
-            <option value="research">Research</option>
-            <option value="data">Data</option>
+
+            <option value="">
+              Primary Use Case
+            </option>
+
+            <option value="coding">
+              Coding
+            </option>
+
+            <option value="writing">
+              Writing
+            </option>
+
+            <option value="research">
+              Research
+            </option>
+
+            <option value="data">
+              Data
+            </option>
+
           </select>
 
         </div>
@@ -216,86 +231,147 @@ function AuditForm({ goToDashboard }) {
         {
           result && (
 
-            <div className="bg-zinc-100 border border-zinc-300 p-6 rounded-2xl space-y-6">
+            <div className="space-y-6">
 
-              <div className="space-y-2">
+              <div className="bg-zinc-100 border border-zinc-300 p-6 rounded-2xl space-y-6">
 
-                <h3 className="text-4xl font-bold text-black">
-                  Audit Results
-                </h3>
+                <div className="space-y-2">
 
-                <p className="text-zinc-600">
-                  Personalized optimization recommendations for your AI stack.
-                </p>
-
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-                <div className="bg-green-100 border border-green-400 p-5 rounded-xl">
-
-                  <p className="text-zinc-700">
-                    Monthly Savings
-                  </p>
-
-                  <h3 className="text-4xl font-bold text-green-600">
-                    ${result.totalSavings}
+                  <h3 className="text-4xl font-bold text-black">
+                    Audit Results
                   </h3>
+
+                  <p className="text-zinc-600">
+                    Personalized optimization recommendations for your AI stack.
+                  </p>
 
                 </div>
 
-                <div className="bg-blue-100 border border-blue-400 p-5 rounded-xl">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-                  <p className="text-zinc-700">
-                    Annual Savings
-                  </p>
+                  <div className="bg-green-100 border border-green-400 p-5 rounded-xl">
 
-                  <h3 className="text-4xl font-bold text-blue-600">
-                    ${result.annualSavings}
-                  </h3>
-
-                </div>
-
-              </div>
-
-              {
-                result.audits.map((audit, index) => (
-
-                  <div
-                    key={index}
-                    className="border border-zinc-300 rounded-xl p-5 space-y-3 bg-white"
-                  >
-
-                    <div className="flex items-center justify-between">
-
-                      <h4 className="text-2xl font-bold text-black">
-                        {audit.tool}
-                      </h4>
-
-                      <div className="text-green-600 font-bold text-xl">
-                        ${audit.savings}
-                      </div>
-
-                    </div>
-
-                    <p className="text-black">
-                      <span className="font-bold">
-                        Recommendation:
-                      </span>{" "}
-                      {audit.recommendation}
+                    <p className="text-zinc-700">
+                      Monthly Savings
                     </p>
 
-                    <p className="text-black">
-                      <span className="font-bold">
-                        Reason:
-                      </span>{" "}
-                      {audit.reason}
-                    </p>
+                    <h3 className="text-4xl font-bold text-green-600">
+                      ${result.totalSavings}
+                    </h3>
 
                   </div>
 
-                ))
-              }
+                  <div className="bg-blue-100 border border-blue-400 p-5 rounded-xl">
+
+                    <p className="text-zinc-700">
+                      Annual Savings
+                    </p>
+
+                    <h3 className="text-4xl font-bold text-blue-600">
+                      ${result.annualSavings}
+                    </h3>
+
+                  </div>
+
+                </div>
+
+                {
+                  result.audits.map((audit, index) => (
+
+                    <div
+                      key={index}
+                      className="border border-zinc-300 rounded-xl p-5 bg-white space-y-3"
+                    >
+
+                      <div className="flex items-center justify-between">
+
+                        <h4 className="text-2xl font-bold text-black">
+                          {audit.tool}
+                        </h4>
+
+                        <div className="text-green-600 font-bold text-xl">
+                          ${audit.savings}
+                        </div>
+
+                      </div>
+
+                      <p className="text-black">
+
+                        <span className="font-bold">
+                          Recommendation:
+                        </span>{" "}
+
+                        {audit.recommendation}
+
+                      </p>
+
+                      <p className="text-black">
+
+                        <span className="font-bold">
+                          Reason:
+                        </span>{" "}
+
+                        {audit.reason}
+
+                      </p>
+
+                    </div>
+
+                  ))
+                }
+
+              </div>
+
+              <div className="border border-zinc-300 rounded-2xl p-6 bg-white space-y-4">
+
+                <div>
+
+                  <h3 className="text-3xl font-bold text-black">
+                    Save Your Audit Report
+                  </h3>
+
+                  <p className="text-zinc-600">
+                    Get your personalized audit summary and future optimization updates.
+                  </p>
+
+                </div>
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  value={leadData.email}
+                  onChange={handleLeadChange}
+                  className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-green-400"
+                />
+
+                <input
+                  type="text"
+                  name="company"
+                  placeholder="Company Name"
+                  value={leadData.company}
+                  onChange={handleLeadChange}
+                  className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-green-400"
+                />
+
+                <input
+                  type="text"
+                  name="role"
+                  placeholder="Your Role"
+                  value={leadData.role}
+                  onChange={handleLeadChange}
+                  className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-green-400"
+                />
+
+                <button
+                  type="button"
+                  onClick={saveLead}
+                  className="w-full bg-green-500 hover:bg-green-400 transition text-black py-4 rounded-xl font-bold"
+                >
+                  Save Audit Report
+                </button>
+
+              </div>
 
             </div>
 
