@@ -7,88 +7,120 @@ function ToolCard({
 
   return (
 
-    <div className="bg-black border border-zinc-700 rounded-xl p-5 space-y-4">
+    <div className="space-y-4 bg-zinc-100 p-5 rounded-2xl border border-zinc-300">
 
-      <select
-        value={toolData.tool}
-        onChange={(e) =>
-          handleChange(index, "tool", e.target.value)
-        }
-        className="w-full p-4 rounded-lg bg-zinc-900 border border-zinc-700 text-white"
-      >
+      <div className="space-y-2">
 
-        <option value="">
-          Select Tool
-        </option>
+        <label className="font-semibold text-black">
+          AI Tool
+        </label>
 
-        {
-          tools.map((tool) => (
+        <select
+          value={toolData.tool}
+          onChange={(e) =>
+            handleChange(index, "tool", e.target.value)
+          }
+          className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black focus:outline-none focus:ring-2 focus:ring-green-400"
+        >
 
-            <option
-              key={tool.name}
-              value={tool.name}
-            >
-              {tool.name}
-            </option>
+          <option value="">
+            Select Tool
+          </option>
 
-          ))
-        }
+          {
+            tools.map((tool) => (
 
-      </select>
+              <option
+                key={tool.name}
+                value={tool.name}
+              >
+                {tool.name}
+              </option>
 
-      <select
-        value={toolData.plan}
-        onChange={(e) =>
-          handleChange(index, "plan", e.target.value)
-        }
-        className="w-full p-4 rounded-lg bg-zinc-900 border border-zinc-700 text-white"
-      >
+            ))
+          }
 
-        <option value="">
-          Select Plan
-        </option>
+        </select>
 
-        <option value="free">
-          Free
-        </option>
+      </div>
 
-        <option value="plus">
-          Plus
-        </option>
+      <div className="space-y-2">
 
-        <option value="pro">
-          Pro
-        </option>
+        <label className="font-semibold text-black">
+          Subscription Plan
+        </label>
 
-        <option value="team">
-          Team
-        </option>
+        <select
+          value={toolData.plan}
+          onChange={(e) =>
+            handleChange(index, "plan", e.target.value)
+          }
+          className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black focus:outline-none focus:ring-2 focus:ring-green-400"
+        >
 
-        <option value="enterprise">
-          Enterprise
-        </option>
+          <option value="">
+            Select Plan
+          </option>
 
-      </select>
+          <option value="free">
+            Free
+          </option>
 
-      <input
-        type="number"
-        placeholder="Monthly Spend ($)"
-        value={toolData.monthlySpend}
-        onChange={(e) =>
-          handleChange(index, "monthlySpend", e.target.value)
-        }
-        className="w-full p-4 rounded-lg bg-zinc-900 border border-zinc-700 text-white placeholder-gray-400"
-      />
+          <option value="plus">
+            Plus
+          </option>
 
-      <input
-        type="number"
-        placeholder="Seats"
-        value={toolData.seats}
-        onChange={(e) =>
-          handleChange(index, "seats", e.target.value)
-        }
-        className="w-full p-4 rounded-lg bg-zinc-900 border border-zinc-700 text-white placeholder-gray-400"
-      />
+          <option value="pro">
+            Pro
+          </option>
+
+          <option value="team">
+            Team
+          </option>
+
+          <option value="enterprise">
+            Enterprise
+          </option>
+
+        </select>
+
+      </div>
+
+      <div className="space-y-2">
+
+        <label className="font-semibold text-black">
+          Monthly Spend
+        </label>
+
+        <input
+          type="number"
+          placeholder="Monthly Spend ($)"
+          value={toolData.monthlySpend}
+          onChange={(e) =>
+            handleChange(index, "monthlySpend", e.target.value)
+          }
+          className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+
+      </div>
+
+      <div className="space-y-2">
+
+        <label className="font-semibold text-black">
+          Number of Seats
+        </label>
+
+        <input
+          type="number"
+          placeholder="Number of Seats"
+          value={toolData.seats}
+          onChange={(e) =>
+            handleChange(index, "seats", e.target.value)
+          }
+          className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+
+      </div>
 
     </div>
   )
