@@ -144,7 +144,7 @@ function AuditForm({ goToDashboard }) {
 
         <div className="space-y-2">
 
-          <h2 className="text-5xl font-bold">
+          <h2 className="text-5xl font-bold text-black">
             AI Spend Audit
           </h2>
 
@@ -189,13 +189,13 @@ function AuditForm({ goToDashboard }) {
             placeholder="Team Size"
             value={teamSize}
             onChange={(e) => setTeamSize(e.target.value)}
-            className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black placeholder-zinc-500"
+            className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black caret-black placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-green-400"
           />
 
           <select
             value={useCase}
             onChange={(e) => setUseCase(e.target.value)}
-            className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black"
+            className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black caret-black focus:outline-none focus:ring-2 focus:ring-green-400"
           >
             <option value="">Primary Use Case</option>
             <option value="coding">Coding</option>
@@ -296,57 +296,6 @@ function AuditForm({ goToDashboard }) {
 
                 ))
               }
-
-              <div className="border border-zinc-300 rounded-xl p-5 bg-white space-y-4">
-
-                <div className="space-y-2">
-
-                  <h3 className="text-2xl font-bold text-black">
-                    Save Your Audit Report
-                  </h3>
-
-                  <p className="text-zinc-600">
-                    Get your personalized audit summary and future optimization updates.
-                  </p>
-
-                </div>
-
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email Address"
-                  value={leadData.email}
-                  onChange={handleLeadChange}
-                  className="w-full p-4 rounded-xl bg-zinc-100 border border-zinc-300 text-black placeholder-zinc-500"
-                />
-
-                <input
-                  type="text"
-                  name="company"
-                  placeholder="Company Name"
-                  value={leadData.company}
-                  onChange={handleLeadChange}
-                  className="w-full p-4 rounded-xl bg-zinc-100 border border-zinc-300 text-black placeholder-zinc-500"
-                />
-
-                <input
-                  type="text"
-                  name="role"
-                  placeholder="Your Role"
-                  value={leadData.role}
-                  onChange={handleLeadChange}
-                  className="w-full p-4 rounded-xl bg-zinc-100 border border-zinc-300 text-black placeholder-zinc-500"
-                />
-
-                <button
-                  type="button"
-                  onClick={saveLead}
-                  className="w-full bg-green-500 hover:bg-green-400 transition text-black py-4 rounded-xl font-bold"
-                >
-                  Save Audit Report
-                </button>
-
-              </div>
 
             </div>
 

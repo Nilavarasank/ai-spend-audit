@@ -20,10 +20,10 @@ function ToolCard({
           onChange={(e) =>
             handleChange(index, "tool", e.target.value)
           }
-          className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-zinc-800 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-green-400"
+          className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black caret-black focus:outline-none focus:ring-2 focus:ring-green-400"
         >
 
-          <option value="">
+          <option value="" className="text-zinc-500">
             Select Tool
           </option>
 
@@ -33,6 +33,7 @@ function ToolCard({
               <option
                 key={tool.name}
                 value={tool.name}
+                className="text-black bg-white"
               >
                 {tool.name}
               </option>
@@ -55,30 +56,30 @@ function ToolCard({
           onChange={(e) =>
             handleChange(index, "plan", e.target.value)
           }
-          className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-zinc-800 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-green-400"
+          className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black caret-black focus:outline-none focus:ring-2 focus:ring-green-400"
         >
 
-          <option value="">
+          <option value="" className="text-zinc-500">
             Select Plan
           </option>
 
-          <option value="free">
+          <option value="free" className="text-black bg-white">
             Free
           </option>
 
-          <option value="plus">
+          <option value="plus" className="text-black bg-white">
             Plus
           </option>
 
-          <option value="pro">
+          <option value="pro" className="text-black bg-white">
             Pro
           </option>
 
-          <option value="team">
+          <option value="team" className="text-black bg-white">
             Team
           </option>
 
-          <option value="enterprise">
+          <option value="enterprise" className="text-black bg-white">
             Enterprise
           </option>
 
@@ -99,7 +100,7 @@ function ToolCard({
           onChange={(e) =>
             handleChange(index, "monthlySpend", e.target.value)
           }
-          className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-zinc-800 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-green-400"
+          className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black caret-black placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-green-400"
         />
 
       </div>
@@ -117,7 +118,7 @@ function ToolCard({
           onChange={(e) =>
             handleChange(index, "seats", e.target.value)
           }
-          className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-zinc-800 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-green-400"
+          className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black caret-black placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-green-400"
         />
 
       </div>
