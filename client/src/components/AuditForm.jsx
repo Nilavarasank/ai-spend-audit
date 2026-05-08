@@ -189,25 +189,51 @@ function AuditForm() {
         {
           auditGenerated && (
 
-            <div className="bg-green-100 border border-green-400 rounded-2xl p-6">
+            <div className="bg-green-100 border border-green-400 rounded-2xl p-6 space-y-4">
 
-              <h2 className="text-3xl font-bold text-black mb-4">
-                Audit Results
-              </h2>
+              <div className="flex justify-between items-center">
 
-              <p className="text-lg text-black">
-                Potential Monthly Savings:
-                <span className="font-bold text-green-700">
-                  {" "} $250
-                </span>
-              </p>
+                <h2 className="text-3xl font-bold text-black">
+                  Audit Results
+                </h2>
 
-              <p className="text-lg text-black mt-2">
-                Recommended Action:
-                <span className="font-bold">
-                  {" "} Consolidate unused AI subscriptions
-                </span>
-              </p>
+                <p className="text-zinc-700 font-semibold">
+                  Date: {new Date().toLocaleDateString()}
+                </p>
+
+              </div>
+
+              <div className="bg-white rounded-xl p-5 border border-green-300">
+
+                <p className="text-lg text-black">
+                  Potential Monthly Savings:
+                  <span className="font-bold text-green-700">
+                    {" "} $250
+                  </span>
+                </p>
+
+                <p className="text-lg text-black mt-3">
+                  Annual Savings:
+                  <span className="font-bold text-green-700">
+                    {" "} $3000
+                  </span>
+                </p>
+
+                <p className="text-lg text-black mt-3">
+                  Recommended Action:
+                  <span className="font-bold">
+                    {" "} Consolidate unused AI subscriptions
+                  </span>
+                </p>
+
+                <p className="text-lg text-black mt-3">
+                  Optimization Score:
+                  <span className="font-bold text-blue-700">
+                    {" "} 87%
+                  </span>
+                </p>
+
+              </div>
 
             </div>
 
