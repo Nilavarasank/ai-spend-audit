@@ -5,31 +5,35 @@ function ToolCard({
   handleChange
 }) {
 
-  const selectedTool = tools.find(
-    (tool) => tool.name === toolData.tool
-  )
-
   return (
-    <div className="bg-black border border-zinc-700 p-5 rounded-lg space-y-4">
 
-      <h3 className="text-xl font-bold">
-        Tool {index + 1}
-      </h3>
+    <div className="bg-black border border-zinc-700 rounded-xl p-5 space-y-4">
 
       <select
         value={toolData.tool}
         onChange={(e) =>
           handleChange(index, "tool", e.target.value)
         }
-        className="w-full p-3 rounded bg-zinc-900 border border-zinc-700"
+        className="w-full p-4 rounded-lg bg-zinc-900 border border-zinc-700 text-white"
       >
-        <option value="">Select Tool</option>
 
-        {tools.map((tool) => (
-          <option key={tool.name} value={tool.name}>
-            {tool.name}
-          </option>
-        ))}
+        <option value="">
+          Select Tool
+        </option>
+
+        {
+          tools.map((tool) => (
+
+            <option
+              key={tool.name}
+              value={tool.name}
+            >
+              {tool.name}
+            </option>
+
+          ))
+        }
+
       </select>
 
       <select
@@ -37,25 +41,43 @@ function ToolCard({
         onChange={(e) =>
           handleChange(index, "plan", e.target.value)
         }
-        className="w-full p-3 rounded bg-zinc-900 border border-zinc-700"
+        className="w-full p-4 rounded-lg bg-zinc-900 border border-zinc-700 text-white"
       >
-        <option value="">Select Plan</option>
 
-        {selectedTool?.plans.map((plan) => (
-          <option key={plan} value={plan}>
-            {plan}
-          </option>
-        ))}
+        <option value="">
+          Select Plan
+        </option>
+
+        <option value="free">
+          Free
+        </option>
+
+        <option value="plus">
+          Plus
+        </option>
+
+        <option value="pro">
+          Pro
+        </option>
+
+        <option value="team">
+          Team
+        </option>
+
+        <option value="enterprise">
+          Enterprise
+        </option>
+
       </select>
 
       <input
         type="number"
-        placeholder="Monthly Spend"
+        placeholder="Monthly Spend ($)"
         value={toolData.monthlySpend}
         onChange={(e) =>
           handleChange(index, "monthlySpend", e.target.value)
         }
-        className="w-full p-3 rounded bg-zinc-900 border border-zinc-700"
+        className="w-full p-4 rounded-lg bg-zinc-900 border border-zinc-700 text-white placeholder-gray-400"
       />
 
       <input
@@ -65,7 +87,7 @@ function ToolCard({
         onChange={(e) =>
           handleChange(index, "seats", e.target.value)
         }
-        className="w-full p-3 rounded bg-zinc-900 border border-zinc-700"
+        className="w-full p-4 rounded-lg bg-zinc-900 border border-zinc-700 text-white placeholder-gray-400"
       />
 
     </div>

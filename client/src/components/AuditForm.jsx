@@ -25,7 +25,6 @@ function AuditForm({ goToDashboard }) {
     role: ""
   })
 
-  // Load saved data
   useEffect(() => {
 
     const savedData = localStorage.getItem("auditData")
@@ -41,7 +40,6 @@ function AuditForm({ goToDashboard }) {
 
   }, [])
 
-  // Save data automatically
   useEffect(() => {
 
     const data = {
@@ -108,6 +106,8 @@ function AuditForm({ goToDashboard }) {
       return
     }
 
+    alert("Audit report saved successfully")
+
     goToDashboard()
   }
 
@@ -135,217 +135,227 @@ function AuditForm({ goToDashboard }) {
 
   return (
 
-    <form
-      onSubmit={handleSubmit}
-      className="bg-zinc-900 p-8 rounded-xl w-full max-w-3xl mx-auto mt-10 space-y-6 shadow-2xl"
-    >
+    <div className="min-h-screen bg-zinc-100 py-10 px-4">
 
-      <div className="space-y-2">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white p-8 rounded-2xl w-full max-w-4xl mx-auto space-y-6 shadow-2xl text-black"
+      >
 
-        <h2 className="text-4xl font-bold">
-          AI Spend Audit
-        </h2>
+        <div className="space-y-2">
 
-        <p className="text-zinc-400">
-          Analyze your AI tooling costs and uncover savings opportunities.
-        </p>
+          <h2 className="text-5xl font-bold">
+            AI Spend Audit
+          </h2>
 
-      </div>
+          <p className="text-zinc-600 text-lg">
+            Analyze your AI tooling costs and uncover savings opportunities.
+          </p>
 
-      {
-        toolsData.map((toolData, index) => (
+        </div>
 
-          <ToolCard
-            key={index}
-            index={index}
-            toolData={toolData}
-            tools={tools}
-            handleChange={handleChange}
+        {
+          toolsData.map((toolData, index) => (
+
+            <div
+              key={index}
+              className="bg-zinc-100 border border-zinc-300 rounded-xl p-5"
+            >
+
+              <ToolCard
+                index={index}
+                toolData={toolData}
+                tools={tools}
+                handleChange={handleChange}
+              />
+
+            </div>
+
+          ))
+        }
+
+        <button
+          type="button"
+          onClick={addTool}
+          className="w-full bg-zinc-900 hover:bg-black transition py-3 rounded-xl font-bold text-white"
+        >
+          + Add Another Tool
+        </button>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          <input
+            type="number"
+            placeholder="Team Size"
+            value={teamSize}
+            onChange={(e) => setTeamSize(e.target.value)}
+            className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black placeholder-zinc-500"
           />
 
-        ))
-      }
+          <select
+            value={useCase}
+            onChange={(e) => setUseCase(e.target.value)}
+            className="w-full p-4 rounded-xl bg-white border border-zinc-300 text-black"
+          >
+            <option value="">Primary Use Case</option>
+            <option value="coding">Coding</option>
+            <option value="writing">Writing</option>
+            <option value="research">Research</option>
+            <option value="data">Data</option>
+          </select>
 
-      <button
-        type="button"
-        onClick={addTool}
-        className="w-full bg-zinc-700 hover:bg-zinc-600 transition py-3 rounded font-bold"
-      >
-        + Add Another Tool
-      </button>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-        <input
-          type="number"
-          placeholder="Team Size"
-          value={teamSize}
-          onChange={(e) => setTeamSize(e.target.value)}
-          className="w-full p-3 rounded bg-black border border-zinc-700"
-        />
-
-        <select
-          value={useCase}
-          onChange={(e) => setUseCase(e.target.value)}
-          className="w-full p-3 rounded bg-black border border-zinc-700"
+        <button
+          type="submit"
+          className="w-full bg-green-500 hover:bg-green-400 transition text-black py-4 rounded-xl font-bold text-lg"
         >
-          <option value="">Primary Use Case</option>
-          <option value="coding">Coding</option>
-          <option value="writing">Writing</option>
-          <option value="research">Research</option>
-          <option value="data">Data</option>
-        </select>
+          Generate Audit
+        </button>
 
-      </div>
+        {
+          result && (
 
-      <button
-        type="submit"
-        className="w-full bg-white hover:bg-zinc-200 transition text-black py-4 rounded font-bold text-lg"
-      >
-        Generate Audit
-      </button>
+            <div className="bg-zinc-100 border border-zinc-300 p-6 rounded-2xl space-y-6">
 
-      {
-        result && (
+              <div className="space-y-2">
 
-          <div className="bg-black border border-zinc-700 p-6 rounded-xl space-y-6">
-
-            <div className="space-y-2">
-
-              <h3 className="text-4xl font-bold">
-                Audit Results
-              </h3>
-
-              <p className="text-zinc-400">
-                Personalized optimization recommendations for your AI stack.
-              </p>
-
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-              <div className="bg-green-500/10 border border-green-500 p-5 rounded-lg">
-
-                <p className="text-zinc-400">
-                  Monthly Savings
-                </p>
-
-                <h3 className="text-4xl font-bold text-green-400">
-                  ${result.totalSavings}
+                <h3 className="text-4xl font-bold text-black">
+                  Audit Results
                 </h3>
+
+                <p className="text-zinc-600">
+                  Personalized optimization recommendations for your AI stack.
+                </p>
 
               </div>
 
-              <div className="bg-blue-500/10 border border-blue-500 p-5 rounded-lg">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-                <p className="text-zinc-400">
-                  Annual Savings
-                </p>
+                <div className="bg-green-100 border border-green-400 p-5 rounded-xl">
 
-                <h3 className="text-4xl font-bold text-blue-400">
-                  ${result.annualSavings}
-                </h3>
+                  <p className="text-zinc-700">
+                    Monthly Savings
+                  </p>
+
+                  <h3 className="text-4xl font-bold text-green-600">
+                    ${result.totalSavings}
+                  </h3>
+
+                </div>
+
+                <div className="bg-blue-100 border border-blue-400 p-5 rounded-xl">
+
+                  <p className="text-zinc-700">
+                    Annual Savings
+                  </p>
+
+                  <h3 className="text-4xl font-bold text-blue-600">
+                    ${result.annualSavings}
+                  </h3>
+
+                </div>
 
               </div>
 
-            </div>
+              {
+                result.audits.map((audit, index) => (
 
-            {
-              result.audits.map((audit, index) => (
+                  <div
+                    key={index}
+                    className="border border-zinc-300 rounded-xl p-5 space-y-3 bg-white"
+                  >
 
-                <div
-                  key={index}
-                  className="border border-zinc-700 rounded-xl p-5 space-y-3 bg-zinc-900"
-                >
+                    <div className="flex items-center justify-between">
 
-                  <div className="flex items-center justify-between">
+                      <h4 className="text-2xl font-bold text-black">
+                        {audit.tool}
+                      </h4>
 
-                    <h4 className="text-2xl font-bold">
-                      {audit.tool}
-                    </h4>
+                      <div className="text-green-600 font-bold text-xl">
+                        ${audit.savings}
+                      </div>
 
-                    <div className="text-green-400 font-bold text-xl">
-                      ${audit.savings}
                     </div>
+
+                    <p className="text-black">
+                      <span className="font-bold">
+                        Recommendation:
+                      </span>{" "}
+                      {audit.recommendation}
+                    </p>
+
+                    <p className="text-black">
+                      <span className="font-bold">
+                        Reason:
+                      </span>{" "}
+                      {audit.reason}
+                    </p>
 
                   </div>
 
-                  <p>
-                    <span className="font-bold">
-                      Recommendation:
-                    </span>{" "}
-                    {audit.recommendation}
-                  </p>
+                ))
+              }
 
-                  <p>
-                    <span className="font-bold">
-                      Reason:
-                    </span>{" "}
-                    {audit.reason}
+              <div className="border border-zinc-300 rounded-xl p-5 bg-white space-y-4">
+
+                <div className="space-y-2">
+
+                  <h3 className="text-2xl font-bold text-black">
+                    Save Your Audit Report
+                  </h3>
+
+                  <p className="text-zinc-600">
+                    Get your personalized audit summary and future optimization updates.
                   </p>
 
                 </div>
 
-              ))
-            }
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  value={leadData.email}
+                  onChange={handleLeadChange}
+                  className="w-full p-4 rounded-xl bg-zinc-100 border border-zinc-300 text-black placeholder-zinc-500"
+                />
 
-            <div className="border border-zinc-700 rounded-xl p-5 bg-zinc-950 space-y-4">
+                <input
+                  type="text"
+                  name="company"
+                  placeholder="Company Name"
+                  value={leadData.company}
+                  onChange={handleLeadChange}
+                  className="w-full p-4 rounded-xl bg-zinc-100 border border-zinc-300 text-black placeholder-zinc-500"
+                />
 
-              <div className="space-y-2">
+                <input
+                  type="text"
+                  name="role"
+                  placeholder="Your Role"
+                  value={leadData.role}
+                  onChange={handleLeadChange}
+                  className="w-full p-4 rounded-xl bg-zinc-100 border border-zinc-300 text-black placeholder-zinc-500"
+                />
 
-                <h3 className="text-2xl font-bold">
-                  Save Your Audit Report
-                </h3>
-
-                <p className="text-zinc-400">
-                  Get your personalized audit summary and future optimization updates.
-                </p>
+                <button
+                  type="button"
+                  onClick={saveLead}
+                  className="w-full bg-green-500 hover:bg-green-400 transition text-black py-4 rounded-xl font-bold"
+                >
+                  Save Audit Report
+                </button>
 
               </div>
 
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                value={leadData.email}
-                onChange={handleLeadChange}
-                className="w-full p-3 rounded bg-black border border-zinc-700"
-              />
-
-              <input
-                type="text"
-                name="company"
-                placeholder="Company Name"
-                value={leadData.company}
-                onChange={handleLeadChange}
-                className="w-full p-3 rounded bg-black border border-zinc-700"
-              />
-
-              <input
-                type="text"
-                name="role"
-                placeholder="Your Role"
-                value={leadData.role}
-                onChange={handleLeadChange}
-                className="w-full p-3 rounded bg-black border border-zinc-700"
-              />
-
-              <button
-                type="button"
-                onClick={saveLead}
-                className="w-full bg-green-500 hover:bg-green-400 transition text-black py-3 rounded font-bold"
-              >
-                Save Audit Report
-              </button>
-
             </div>
 
-          </div>
+          )
+        }
 
-        )
-      }
+      </form>
 
-    </form>
+    </div>
   )
 }
 
