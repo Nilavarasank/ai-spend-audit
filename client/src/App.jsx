@@ -1,9 +1,12 @@
-import Dashboard from "./pages/Dashboard"
+import "./index.css";
+import AuditForm from "./components/AuditForm";
 
 function App() {
-
-  return <Dashboard />
-
+  return (
+    <div>
+      <AuditForm />
+    </div>
+  );
 }
 
-export default App
+export default App;

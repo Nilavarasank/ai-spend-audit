@@ -2,12 +2,13 @@
 
 body {
   margin: 0;
+  background: #f4f4f5;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f5;
 }
 
 input,
 select,
 textarea {
+  background: white;
   color: black;
 }
